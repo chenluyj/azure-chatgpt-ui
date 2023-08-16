@@ -71,6 +71,13 @@ const it: LocaleType = {
         it: "Italiano",
       },
     },
+    Aitype: {
+      Name: "AI Type",
+      Options: {
+        gpt: "gpt",
+        minimax: "minimax",
+      },
+    },
     Avatar: "Avatar",
     FontSize: {
       Title: "Dimensione carattere",

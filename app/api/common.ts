@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { log } from "console";
 
 // const OPENAI_URL = "api.openai.com";
 const DEFAULT_PROTOCOL = "https";
@@ -20,7 +21,6 @@ export async function requestOpenai(req: NextRequest) {
   //Check Azure doc for more details:
   //https://learn.microsoft.com/en-us/azure/cognitive-services/openai/chatgpt-quickstart?tabs=command-line&pivots=rest-api
 
-  // console.log("[Proxy] ", openaiPath);
   console.log(
     "[Proxy] ",
     `${AZURE_OPENAI_API_BASE}/openai/deployments/${AZURE_OPENAI_DEPLOYMENT_NAME}/${AZURE_OPENAI_PATH}`,
@@ -39,4 +39,37 @@ export async function requestOpenai(req: NextRequest) {
       body: req.body,
     },
   );
+  
+}
+
+
+const MINIMAX_API_URL = `${process.env.MINIMAX_API_BASE}?GroupId=${process.env.MINIMAX_GROUP_ID}`
+const MINIMAX_API_KEY = process.env.MINIMAX_API_KEY
+export async function requestMinimax(req: NextRequest) {
+  var body = await req.json();
+    // console.log('body',body)
+    const minimaxReqBody = {
+      "model":"abab5-chat",
+      "tokens_to_generate": 512,
+      'messages': <Array<{ sender_type: string; text: string; }>>[]
+    }
+    body.messages.forEach((element: { role: string; content: any; }) => {
+      minimaxReqBody.messages.push({
+        sender_type: element.role == 'user' ? 'USER' : 'BOT',
+        text: element.content,
+      })
+    });
+
+    return fetch(
+      MINIMAX_API_URL,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${MINIMAX_API_KEY}`,
+        },
+        method: req.method,
+        body: JSON.stringify(minimaxReqBody),
+      },
+    );
+  
 }

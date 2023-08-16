@@ -69,6 +69,13 @@ const tw: LocaleType = {
         it: "Italiano",
       },
     },
+    Aitype: {
+      Name: "AI Type",
+      Options: {
+        gpt: "gpt",
+        minimax: "minimax",
+      },
+    },
     Avatar: "大頭貼",
     FontSize: {
       Title: "字型大小",

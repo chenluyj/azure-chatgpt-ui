@@ -61,3 +61,26 @@ export function changeLang(lang: Lang) {
 }
 
 export default { en: EN, cn: CN, tw: TW, es: ES, it: IT }[getLang()];
+
+
+
+const AITYPE_KEY = "aitype";
+export const AllAitypes = ["gpt", "minimax"] as const;
+type Aitype = (typeof AllAitypes)[number];
+export function getAitype(): Aitype {
+  const savedAitype = getItem(AITYPE_KEY);
+  // console.log('getAitype: savedAitype = ', savedAitype)
+
+  if (AllAitypes.includes((savedAitype ?? "gpt") as Aitype)) {
+    return savedAitype as Aitype;
+  }
+
+  return 'gpt';
+  
+}
+
+export function changeAitype(aitype: Aitype) {
+  // console.log('changeAitype: aitype = ', aitype)
+  setItem(AITYPE_KEY, aitype);
+  location.reload();
+}

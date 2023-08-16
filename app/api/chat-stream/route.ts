@@ -1,6 +1,7 @@
 import { createParser } from "eventsource-parser";
 import { NextRequest } from "next/server";
 import { requestOpenai } from "../common";
+import { log } from "console";
 
 async function createStream(req: NextRequest) {
   const encoder = new TextEncoder();
@@ -9,6 +10,9 @@ async function createStream(req: NextRequest) {
   const res = await requestOpenai(req);
 
   const contentType = res.headers.get("Content-Type") ?? "";
+
+  console.log('contentType',contentType)
+
   if (!contentType.includes("stream")) {
     const content = await (
       await res.text()

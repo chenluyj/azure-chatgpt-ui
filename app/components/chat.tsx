@@ -41,6 +41,7 @@ import styles from "./home.module.scss";
 import chatStyle from "./chat.module.scss";
 
 import { Input, Modal, showModal, showToast } from "./ui-lib";
+import { log } from "console";
 
 const Markdown = dynamic(
   async () => memo((await import("./markdown")).Markdown),
@@ -408,6 +409,7 @@ export function Chat(props: {
 
   // submit user input
   const onUserSubmit = () => {
+    console.log('onUserSubmit')
     if (userInput.length <= 0) return;
     setIsLoading(true);
     chatStore.onUserInput(userInput).then(() => setIsLoading(false));

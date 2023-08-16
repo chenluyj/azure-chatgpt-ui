@@ -3,10 +3,19 @@ import { ACCESS_CODES } from "./app/api/access";
 import md5 from "spark-md5";
 
 export const config = {
-  matcher: ["/api/openai", "/api/chat-stream"],
+  matcher: ["/api/openai", "/api/chat-stream", "/api/minimax"],
 };
 
 export function middleware(req: NextRequest) {
+  var url = req.url
+  console.log('middleware url',url)
+  if(url.includes(config.matcher[2])){
+    return NextResponse.next({
+      request: {
+        headers: req.headers,
+      },
+    });
+  }
   const accessCode = req.headers.get("access-code");
   const token = req.headers.get("token");
   const hashedCode = md5.hash(accessCode ?? "").trim();

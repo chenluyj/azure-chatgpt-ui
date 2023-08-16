@@ -1,6 +1,8 @@
 import type { ChatRequest, ChatReponse } from "./api/openai/typing";
 import { Message, ModelConfig, useAccessStore, useChatStore } from "./store";
 import { showToast } from "./components/ui-lib";
+import { log } from "console";
+import { getAitype } from "./locales";
 
 const TIME_OUT_MS = 30000;
 
@@ -138,7 +140,9 @@ export async function requestChatStream(
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS);
 
   try {
-    const res = await fetch("/api/chat-stream", {
+    var aitype = getAitype()
+    var url = aitype == 'gpt' ? '/api/chat-stream' : '/api/minimax'
+    const res = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -156,6 +160,8 @@ export async function requestChatStream(
       options?.onMessage(responseText, true);
       controller.abort();
     };
+
+    console.log('res',JSON.stringify(res))
 
     if (res.ok) {
       const reader = res.body?.getReader();

@@ -25,7 +25,7 @@ import {
 } from "../store";
 import { Avatar } from "./chat";
 
-import Locale, { AllLangs, changeLang, getLang } from "../locales";
+import Locale, { AllLangs, changeLang, getLang, AllAitypes, getAitype, changeAitype } from "../locales";
 import { getCurrentVersion, getEmojiUrl } from "../utils";
 import Link from "next/link";
 // import { UPDATE_URL } from "../constant";
@@ -230,6 +230,21 @@ export function Settings(props: { closeSettings: () => void }) {
               />
             )}
           </SettingItem> */}
+
+          <SettingItem title={Locale.Settings.Aitype.Name}>
+            <select
+              value={getAitype()}
+              onChange={(e) => {
+                changeAitype(e.target.value as any);
+              }}
+            >
+              {AllAitypes.map((aitype) => (
+                <option value={aitype} key={aitype}>
+                  {Locale.Settings.Aitype.Options[aitype]}
+                </option>
+              ))}
+            </select>
+          </SettingItem>
 
           <SettingItem title={Locale.Settings.SendKey}>
             <select

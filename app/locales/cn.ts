@@ -68,6 +68,13 @@ const cn = {
         it: "Italiano",
       },
     },
+    Aitype: {
+      Name: "AI类型",
+      Options: {
+        gpt: "gpt",
+        minimax: "minimax",
+      },
+    },
     Avatar: "头像",
     FontSize: {
       Title: "字体大小",
