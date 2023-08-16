@@ -29,13 +29,11 @@ Need to prepare following environment variables. Suggest to use Azure Portal to 
 
    Key to access Azure Open AI Service.
 
-![endpoint and key](static/env-endpoint.png)
 
 - AZURE_OPENAI_DEPLOYMENT_NAME
 
    Model deployment name
 
-![model](static/env-model.png)
 
 
 - NEXT_PUBLIC_TITLE (optional)
@@ -46,13 +44,11 @@ Title in the chat window
 
 Subtitle in the chat window
 
-![title](static/env-title.png)
 
 - CODE (optional)
 
 Access code to protect the connection to Azure OpenAI Service. If this environment variable is set during deployment, the correct access code should be filled int the setting window:
 
-![code](static/env-code.png)
 
 - NEXT_PUBLIC_SYSTEM_PROMPT (optional)
 
