@@ -58,6 +58,23 @@ Access code to protect the connection to Azure OpenAI Service. If this environme
 
 Set up System Prompt for all conversations.
 
+
+### MiniMax Config
+- MINIMAX_GROUP_ID
+
+  Minimax account Group Id
+
+- MINIMAX_API_KEY
+
+  Key to access Azure Minimax Service.
+
+- MINIMAX_API_BASE
+
+  Minimax api url https://api.minimax.chat/v1/text/chatcompletion
+
+
+
+
 ### Local Development 
 
 1. Install latest nodejs and yarn.
