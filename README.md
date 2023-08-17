@@ -55,6 +55,8 @@ Access code to protect the connection to Azure OpenAI Service. If this environme
 Set up System Prompt for all conversations.
 
 
+
+![MiniMax](./static/aitype.png)
 ### MiniMax Config
 - MINIMAX_GROUP_ID
 
